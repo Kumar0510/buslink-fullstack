@@ -6,6 +6,8 @@ import { BrowserRouter, createBrowserRouter, RouterProvider } from 'react-router
 import RootLayout from './RootLayout'
 import Login from './components/login/Login'
 import Register from './components/register/Register'
+import Home from './components/home/Home'
+import About from './components/about/About'
 
 function App() {
   let browserRouter = createBrowserRouter([
@@ -14,12 +16,19 @@ function App() {
       element: <RootLayout />,
       children : [
         { 
+          path: '',
+          element:<Home />
+        }
+        ,{ 
           path: 'login',
           element:<Login />
         },
         {
           path: 'register',
           element: <Register />
+        },{ 
+          path: 'aboutus',
+          element:<About />
         }
       ]
     }
