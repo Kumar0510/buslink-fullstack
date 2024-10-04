@@ -8,6 +8,7 @@ import Login from './components/login/Login'
 import Register from './components/register/Register'
 import Home from './components/home/Home'
 import About from './components/about/About'
+import UserProfile from './components/user-profile/UserProfile'
 
 function App() {
   let browserRouter = createBrowserRouter([
@@ -26,9 +27,14 @@ function App() {
         {
           path: 'register',
           element: <Register />
-        },{ 
+        },
+        { 
           path: 'aboutus',
           element:<About />
+        },
+        {
+          path: 'user-profile',
+          element: <UserProfile />
         }
       ]
     }

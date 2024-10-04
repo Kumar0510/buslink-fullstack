@@ -1,0 +1,52 @@
+{
+  "users": [
+    {
+      "id": "0de4",
+      "username": "ok",
+      "password": "123456",
+      "email": "ok@gmail.com",
+      "mobile": "158741264"
+    },
+    {
+      "id": "4170",
+      "username": "Kumar510",
+      "email": "amruthalurikumar@gmail.com",
+      "password": "123",
+      "mobile": "125478963"
+    },
+    {
+      "id": "1e29",
+      "username": "kumar510",
+      "password": "123"
+    },
+    {
+      "id": "e803",
+      "username": "kumar510",
+      "password": "123"
+    },
+    {
+      "id": "87d8",
+      "username": "Kumar510",
+      "password": "123"
+    },
+    {
+      "id": "af00",
+      "username": "22501a0510",
+      "password": "123"
+    },
+    {
+      "id": "378c",
+      "username": "ironman",
+      "email": "amruthalurikumar@gmail.com",
+      "password": "123",
+      "mobile": "1478523696"
+    },
+    {
+      "id": "4f0b",
+      "username": "h",
+      "email": "22501a0510@pvpsit.ac.in",
+      "password": "123",
+      "mobile": "1245789632"
+    }
+  ]
+}

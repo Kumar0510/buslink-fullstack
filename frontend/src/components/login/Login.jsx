@@ -1,13 +1,21 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginCss.css'
-
+import UserLoginContext from '../../../contexts/UserLoginContext';
 function Login() {
-  function handleFormSubmit(){
-    console.log("handle");
+  let {user, loginUser, userLoginStatus} = useContext(UserLoginContext);
+  let navigate= useNavigate();
+  function handleFormSubmit(data){
+    loginUser(data)
   }
+
+  useEffect(() => {
+    if (userLoginStatus === true) {
+      navigate("/user-profile");
+    }
+  }, [userLoginStatus]);
 
   let {register, handleSubmit, formState:{errors}} = useForm();
   return (

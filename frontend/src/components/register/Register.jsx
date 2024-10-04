@@ -12,6 +12,12 @@ function Register() {
     let [err, setErr] = useState("");
 
     async function handleFormSubmit(data){
+
+      let ex = await fetch("http://localhost:3000/users");
+      let resex = await ex.json();
+
+      console.log("data from the api");
+      console.log(resex);
       try{
         let res = await fetch("http://localhost:3000/users", {
         method: "POST",
@@ -29,6 +35,8 @@ function Register() {
       catch(err){
         setErr(err.message)
       }
+
+      
     }
   
     return (
