@@ -2,29 +2,30 @@ import UserLoginContext from "./UserLoginContext";
 import React from 'react'
 import { useState } from "react";
 
-
 function UserLoginStore({children}) {
-    let [user, setUser] = useState({});
+    let [user, setUser] = useState([]);
+    let [busPassRegister, setBusPassRegister] = useState({});
     let [userLoginStatus,setUserLoginStatus]=useState(false)
-
     async function loginUser(userData){
         let res = await fetch(`http://localhost:3000/users?username=${userData.username}&password=${userData.password}`)
         let data = await res.json();
-        console.log("in userloginstore loginUser data sent from the api");
-        console.log(data)
-        if(data){
-            setUser(data)
+        setUser({...data[0]})
+        console.log("eifedfef");
+        if(data.length != 0){
             setUserLoginStatus(true);
-        }else{
-            setUser({})
+            console.log(user);
         }
     }
     function logoutUser(){
         setUserLoginStatus(false)
-        setUser({})
+    }
+    function registerBusPass(userData){
+        console.log("in store userData");
+        console.log(userData);
     }
   return (
-    <UserLoginContext.Provider value={{user,loginUser, userLoginStatus, setUserLoginStatus,logoutUser, setUser}}>
+    <UserLoginContext.Provider value={{user,loginUser, 
+    userLoginStatus, setUserLoginStatus,logoutUser, setUser, busPassRegister, setBusPassRegister, registerBusPass}}>
         {children}
     </UserLoginContext.Provider>
   )

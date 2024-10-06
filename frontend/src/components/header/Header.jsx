@@ -1,8 +1,11 @@
 import React from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import './Header.css'
+import UserLoginContext from '../../../contexts/UserLoginContext';
+import { useContext } from 'react';
+
 function Header() {
-    let userLoginStatus = false;
+  let { logoutUser, userLoginStatus } = useContext(UserLoginContext);
   return  (
     <div>
       <div className='d-flex flex-wrap justify-content-around p-1 main'>
@@ -29,7 +32,7 @@ function Header() {
             </li>
           ) : (
             <li className="nav-item">
-              <Link to="login" className="nav-link text-white">
+              <Link to="login" className="nav-link text-white" onClick={logoutUser}>
                 Logout
               </Link>
             </li>

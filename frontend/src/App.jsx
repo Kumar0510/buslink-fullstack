@@ -9,6 +9,8 @@ import Register from './components/register/Register'
 import Home from './components/home/Home'
 import About from './components/about/About'
 import UserProfile from './components/user-profile/UserProfile'
+import BusPassApplication from './components/BusPassApplication/BusPassApplication'
+
 
 function App() {
   let browserRouter = createBrowserRouter([
@@ -34,7 +36,13 @@ function App() {
         },
         {
           path: 'user-profile',
-          element: <UserProfile />
+          element: <UserProfile />,
+          children: [
+            {
+              path:'newapplication',
+              element: <BusPassApplication />
+            }
+          ]
         }
       ]
     }
