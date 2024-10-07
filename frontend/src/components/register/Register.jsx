@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import "./Register.css"
 
 import { useForm } from 'react-hook-form';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import UserLoginContext from '../../../contexts/UserLoginContext';
 function Register() {
-
+    let {user, setUser, setPhoto, photo} = useContext(UserLoginContext);
     let {register, handleSubmit, formState:{errors}} = useForm();
     let navigate= useNavigate();
     let [err, setErr] = useState("");
@@ -38,6 +38,7 @@ function Register() {
 
       
     }
+    
   
     return (
       <div style={{paddingTop:"30px"}}>
@@ -60,16 +61,18 @@ function Register() {
             </div>
 
             <div className='mb-2'>
+              <label htmlFor="mobile" className='form-label'>Mobile</label>
+              <input type="number" className='form-control' {...register('mobile', {required:true})}/>
+              {errors.password?.type === 'required' && <p className='formSubmitErrors'>Mobile required</p>}
+            </div>
+
+            <div className='mb-2'>
               <label htmlFor="password" className='form-label'>Password</label>
               <input type="password" className='form-control' {...register('password', {required:true})}/>
               {errors.password?.type === 'required' && <p className='formSubmitErrors'>Password required</p>}
             </div>
 
-            <div className='mb-2'>
-              <label htmlFor="mobile" className='form-label'>Mobile</label>
-              <input type="number" className='form-control' {...register('mobile', {required:true})}/>
-              {errors.password?.type === 'required' && <p className='formSubmitErrors'>Mobile required</p>}
-            </div>
+            
             <button className="btn btn-success">Submit</button>
           </form>
         </div>

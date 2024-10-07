@@ -31,8 +31,8 @@ mCLient.connect()
 .catch((err)=>{console.log("Error while connecting to mongo");})
 
 //to seperate the users api request handlers and product api req handlers into seperate files 
-const userApp = module.require("./APIs/userApi");
-const productApp = module.require("./APIs/productApi");
+const userApp = module.require("./apis/userApi");
+//const productApp = module.require("./apis/productApi");
 app.use('/user-api', userApp);
 app.use('*', (req,res,)=>{
     res.send({message: "invalid path"});

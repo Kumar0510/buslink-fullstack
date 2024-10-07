@@ -4,7 +4,9 @@ import { useState } from "react";
 
 function UserLoginStore({children}) {
     let [user, setUser] = useState([]);
+    let [photo, setPhoto] = useState({photosrc : null});
     let [busPassRegister, setBusPassRegister] = useState({});
+    let busPassRegisterStatus = false;
     let [userLoginStatus,setUserLoginStatus]=useState(false)
     async function loginUser(userData){
         let res = await fetch(`http://localhost:3000/users?username=${userData.username}&password=${userData.password}`)
@@ -18,14 +20,12 @@ function UserLoginStore({children}) {
     }
     function logoutUser(){
         setUserLoginStatus(false)
-    }
-    function registerBusPass(userData){
-        console.log("in store userData");
-        console.log(userData);
+        setBusPassRegister({})
     }
   return (
     <UserLoginContext.Provider value={{user,loginUser, 
-    userLoginStatus, setUserLoginStatus,logoutUser, setUser, busPassRegister, setBusPassRegister, registerBusPass}}>
+    userLoginStatus, setUserLoginStatus,logoutUser, setUser,
+     busPassRegister, setBusPassRegister, photo, setPhoto, busPassRegisterStatus}}>
         {children}
     </UserLoginContext.Provider>
   )

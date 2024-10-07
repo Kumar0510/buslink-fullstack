@@ -7,10 +7,12 @@ import UserLoginContext from '../../../contexts/UserLoginContext';
 
 function BusPassApplication() {
     // handleformsubmit is main function to generate the busspass
-    let {registerBusPass} = useContext(UserLoginContext);
+    let {busPassRegister, setBusPassRegister} = useContext(UserLoginContext);
 
     function handleFormSubmit(data){
-        registerBusPass(data);
+        setBusPassRegister({...data})
+        console.log("handle submit buspass register");
+        console.log(busPassRegister);
         registrationStatus = true;
         setSubErr("Form submitted")
     }

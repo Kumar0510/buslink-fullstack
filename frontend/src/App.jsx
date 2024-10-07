@@ -10,13 +10,15 @@ import Home from './components/home/Home'
 import About from './components/about/About'
 import UserProfile from './components/user-profile/UserProfile'
 import BusPassApplication from './components/BusPassApplication/BusPassApplication'
-
+import Mypass from './components/mypass/Mypass'
+import ErrorElement from './ErrorElement'
 
 function App() {
   let browserRouter = createBrowserRouter([
     {
       path: '',
       element: <RootLayout />,
+      errorElement : <ErrorElement />,
       children : [
         { 
           path: '',
@@ -41,6 +43,13 @@ function App() {
             {
               path:'newapplication',
               element: <BusPassApplication />
+            },
+            {
+              path:'renewal',
+              element: <BusPassApplication />
+            },{
+              path:'mypass',
+              element: <Mypass />
             }
           ]
         }
