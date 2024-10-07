@@ -2,4 +2,10 @@
     margin :auto;
     margin-top: 20px;
     width: 300px;;
+    background-color: rgb(35, 41, 41);
+}
+
+img{
+    width: 100px;
+    border-radius: 50%;
 }

@@ -7,12 +7,22 @@ import UserLoginContext from '../../../contexts/UserLoginContext';
 
 function BusPassApplication() {
     // handleformsubmit is main function to generate the busspass
-    let {busPassRegister, setBusPassRegister} = useContext(UserLoginContext);
+    let {busPassRegister, setBusPassRegister, user} = useContext(UserLoginContext);
 
-    function handleFormSubmit(data){
+    async function handleFormSubmit(data){
         setBusPassRegister({...data})
+
+        let res = await fetch(`http://localhost:4001/pass-api/pass/${user.username}`,
+          {
+          method :"post",
+          headers : {"Content-type" : "application/json"},
+          body : JSON.stringify(data)
+          }
+        );
+        let response = await res.json();
+
         console.log("handle submit buspass register");
-        console.log(busPassRegister);
+        console.log(response);
         registrationStatus = true;
         setSubErr("Form submitted")
     }
@@ -48,8 +58,8 @@ function BusPassApplication() {
             <div className='mb-2'>
               <label htmlFor="duration" className='form-label'>Duration</label>
               <select className='bg-light m-2' {...register("duration")}>
-                    <option value="monthly">monthly</option>
-                    <option value="yearly">yearly</option>
+                    <option value="30">30 days</option>
+                    <option value="90">90 days</option>
               </select>
               {errors.username?.type === 'required' && <p className='formSubmitErrors'>passtype required</p>}
             </div>
@@ -60,20 +70,20 @@ function BusPassApplication() {
             </div>
 
             <div className='mb-2'>
-              <label htmlFor="passportimage" className='form-label'>upload passport size photo</label>
-              <input type="file" accept="image/*" className='form-control' {...register('passportimage', {required:true})}/>
+              <label htmlFor="passportimage" className='form-label'>passport size photo</label>
+              <input type="text"  className='form-control' {...register('passportimage', {required:true})}/>
               {errors.username?.type === 'required' && <p className='formSubmitErrors'>photo required</p>}
             </div>
 
             <div className='mb-2'>
-              <label htmlFor="aadhar" className='form-label'>upload Aadhar card</label>
-              <input type="file" accept="image/*" className='form-control' {...register('aadhar', {required:true})}/>
+              <label htmlFor="aadhar" className='form-label'>Aadhar card</label>
+              <input type="text"  className='form-control' {...register('aadhar', {required:true})}/>
               {errors.username?.type === 'required' && <p className='formSubmitErrors'>Aadhar required</p>}
             </div>
 
             <div className='mb-2'>
               <label htmlFor="marklist" className='form-label'>Tenth marks list</label>
-              <input type="file" className='form-control' {...register('marklist', {required:true})}/>
+              <input type="text" className='form-control' {...register('marklist', {required:true})}/>
               {errors.username?.type === 'required' && <p className='formSubmitErrors'>link required</p>}
             </div>
 

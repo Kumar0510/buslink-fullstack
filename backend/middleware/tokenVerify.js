@@ -9,8 +9,9 @@ const verifyToken = (req, res, next) =>{
         let decode = jwt.verify(token, process.env.SECRET_KEY);
         next();
     }catch{
-        res.send({message: "TOken expired"});
+        res.send({message: "Token expired"});
     }
     
 }
+
 module.exports = verifyToken;

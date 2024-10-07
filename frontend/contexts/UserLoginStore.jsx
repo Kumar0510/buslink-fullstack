@@ -8,20 +8,39 @@ function UserLoginStore({children}) {
     let [busPassRegister, setBusPassRegister] = useState({});
     let busPassRegisterStatus = false;
     let [userLoginStatus,setUserLoginStatus]=useState(false)
+    let [passStatus, setPassStatus] = useState(true)
+
     async function loginUser(userData){
-        let res = await fetch(`http://localhost:3000/users?username=${userData.username}&password=${userData.password}`)
-        let data = await res.json();
-        setUser({...data[0]})
-        console.log("eifedfef");
-        if(data.length != 0){
-            setUserLoginStatus(true);
-            console.log(user);
-        }
-    }
-    function logoutUser(){
-        setUserLoginStatus(false)
-        setBusPassRegister({})
-    }
+      let res = await fetch(`http://localhost:4001/user-api/login`,
+          {
+          method :"post",
+          headers : {"Content-type" : "application/json"},
+          body : JSON.stringify(userData)
+          }
+      );
+      let data = await res.json();
+      console.log("in login store")
+      console.log(data)
+      if(data.message === "login success"){
+          setUser(data.users)
+          setUserLoginStatus(true);
+          sessionStorage.setItem('token', data.token)
+          console.log("after set user");
+          passStatus = true;
+          //navigate('/user-profile')
+      }else{
+          setUser({})
+          passStatus = false;
+      }
+  }
+
+  function logoutUser(){
+      console.log('logout pressed');
+      setUserLoginStatus(false)
+      setUser({})
+      sessionStorage.removeItem('token')
+  }
+
   return (
     <UserLoginContext.Provider value={{user,loginUser, 
     userLoginStatus, setUserLoginStatus,logoutUser, setUser,

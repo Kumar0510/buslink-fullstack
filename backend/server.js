@@ -18,13 +18,13 @@ mCLient.connect()
 .then((connectionObj)=>{
     console.log("MongoDB connected");
     //connect to database that is julydb
-    const julydb = connectionObj.db('pvpdb');
+    const buspassproject = connectionObj.db('buspassproject');
     //connect to users collection
-    const usersCollec = julydb.collection('users');
-    const productsCollec = julydb.collection('products');
+    const usersCollec = buspassproject.collection('users');
+    const passCollec = buspassproject.collection('pass')
     //to use users collection across the files
     app.set('usersCollec',usersCollec);
-    app.set('productsCollec',productsCollec);
+    app.set('passCollec', passCollec);
     //assign port to http server
     app.listen(process.env.PORT, ()=>{console.log(`server started on port ${process.env.PORT}`);});
 })
@@ -32,8 +32,12 @@ mCLient.connect()
 
 //to seperate the users api request handlers and product api req handlers into seperate files 
 const userApp = module.require("./apis/userApi");
+const passApp = module.require("./apis/passApi");
 //const productApp = module.require("./apis/productApi");
 app.use('/user-api', userApp);
+app.use('/pass-api', passApp);
+
+
 app.use('*', (req,res,)=>{
     res.send({message: "invalid path"});
 })

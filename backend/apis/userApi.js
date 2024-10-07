@@ -8,7 +8,7 @@ let verifyToken = require('../middleware/tokenVerify');
 let expressAsyncHandler = require('express-async-handler');
 
 //route for get users
-userApp.get('/users',verifyToken, expressAsyncHandler(async (req, res)=>{
+userApp.get('/users', expressAsyncHandler(async (req, res)=>{
     //get users collection obj
     const usersCollec = req.app.get('usersCollec');
     //get users data from db
@@ -22,10 +22,11 @@ userApp.get('/users/:username', async (req, res)=>{
     const usersCollec = req.app.get('usersCollec');
     let userCred = req.params.username;
     //get users data from db
-    let users = await usersCollec.findOne({username : userCred});
+    let user = await usersCollec.findOne({username : userCred});
     //send data to http client
-    if(users === null)
+    if(user === null)
     res.send({message: "no user found"});
+    else res.send({message: "user found", payload: user})
 })
 
 /*
@@ -49,7 +50,6 @@ userApp.post('/users', async (req, res) =>{
     }else{
         let hashedPassword = await bcryptjs.hash(newUser.password, 7);
         newUser.password = hashedPassword;
-        newUser.products = [];
         await usersCollec.insertOne(newUser);
         res.send({message: "User created"});
     }
@@ -65,8 +65,10 @@ userApp.post('/login', async (req, res)=>{
         res.send({message: "Username is invalid"});
     }
     else {
-        let passcheck = bcryptjs.compare(userCred.password, findInDbUser.password);
-        if(passcheck === false) req.send({message: "password is invalid"});
+        //let password = 123;
+        let passcheck = await bcryptjs.compare(userCred.password, findInDbUser.password);
+        
+        if(passcheck === false) res.send({message: "password is invalid"});
         else{
             //create jwt token
             let signedToken = jwt.sign({username:userCred}, process.env.SECRET_KEY, {expiresIn:'1d'})
@@ -75,7 +77,6 @@ userApp.post('/login', async (req, res)=>{
     }
 });
 
-//Protected routes PUT DELETE
 // route to update user
 userApp.put('/user', async (req, res) =>{
     console.log('put req in user')
@@ -86,7 +87,6 @@ userApp.put('/user', async (req, res) =>{
 })
 
 //cart for user api
-
 userApp.put('/add-to-cart/:username', expressAsyncHandler(async(req, res)=>{
     let usersCollec = req.app.get('usersCollec');
     let usernameFromUrl = req.params.username;

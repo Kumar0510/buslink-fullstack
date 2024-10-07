@@ -4,8 +4,9 @@ import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LoginCss.css'
 import UserLoginContext from '../../../contexts/UserLoginContext';
+
 function Login() {
-  let {user, loginUser, userLoginStatus} = useContext(UserLoginContext);
+  let {user, loginUser, userLoginStatus, passStatus} = useContext(UserLoginContext);
   let navigate= useNavigate();
   function handleFormSubmit(data){
     loginUser(data)
