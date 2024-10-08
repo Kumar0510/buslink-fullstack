@@ -12,6 +12,7 @@ import UserProfile from './components/user-profile/UserProfile'
 import BusPassApplication from './components/BusPassApplication/BusPassApplication'
 import Mypass from './components/mypass/Mypass'
 import ErrorElement from './ErrorElement'
+import Renewal from './components/renewal/Renewal'
 
 function App() {
   let browserRouter = createBrowserRouter([
@@ -46,7 +47,7 @@ function App() {
             },
             {
               path:'renewal',
-              element: <BusPassApplication />
+              element: <Renewal />
             },{
               path:'mypass',
               element: <Mypass />

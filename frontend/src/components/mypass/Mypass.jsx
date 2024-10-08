@@ -25,23 +25,29 @@ function Mypass() {
         setBusPassRegister(response.payload)
     }
     return (
-        <div className='text-center'>
+        <div className='mx-auto'>
             {busPassRegister? (
             <div className="card " >
-                <div className="card-body">
-                    <h5 className="card-title">Buspass</h5>
-                    <img src={busPassRegister.passportimage} alt="" />
-                    <p className="card-title">{busPassRegister.fullname}</p>
-                    <p className="card-title">{busPassRegister.passtype}</p>
-                    <p className="card-title">{busPassRegister.duration}</p>
+                <div className="card-body p-5">
+                    <div className='heading text-center'>
+                        <img src="/src/assets/logo.png" alt="" />
+                        <h5 className="card-title">Buspass</h5>
+                    </div>
+                    
+                    <img src={busPassRegister.passportimage} className='m-6 profile' alt="" />
+                    <p className="card-title">Name: {busPassRegister.fullname}</p>
+                    <p className="card-title">Passtype: {busPassRegister.passtype}</p>
+                    <p className="card-title">Duration: {busPassRegister.duration} days</p>
                     <p></p>
                 </div>
             </div>
             ) :  
             (
-            < div className=" m-10 text-center text-danger"> NO bus pass available please register or the bus pass </div>  
+            < div className=" m-10 text-center text-danger"> No bus pass available please register for the bus pass</div>  
             )}
-            <button className='btn btn-success' onClick={handleClick}>check</button>
+            <div className='text-center'>
+                <button className='btn btn-success text' onClick={handleClick}>check</button>
+            </div>
         </div>
     )
 }

@@ -4,9 +4,9 @@ import { useForm } from 'react-hook-form';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UserLoginContext from '../../../contexts/UserLoginContext';
+import './renewal.css'
 
-function BusPassApplication() {
-    // handleformsubmit is main function to generate the busspass
+function Renewal() {
     let {busPassRegister, setBusPassRegister, user} = useContext(UserLoginContext);
 
     async function handleFormSubmit(data){
@@ -33,8 +33,8 @@ function BusPassApplication() {
     let [err, setErr] = useState("");
     let [suberror, setSubErr] = useState("");
   return (
-    <div style={{paddingTop:"15px"}}>
-      <p className='text-center display-6' >Bus Pass Application</p>
+    <div style={{paddingTop:"15px"}} className='renewalmain'>
+        <p className='text-center display-6' >Bus Pass Renewal</p>
         <p className='text-center text-danger'>{err}</p>
         <p className='text-center text-success'>{suberror}</p>
         <div className='row'>
@@ -66,26 +66,9 @@ function BusPassApplication() {
             </div>
 
             <div className='mb-2'>
-              <label htmlFor="routedetails" className='form-label'>route (if applying for route pass)</label>
-              <input type="text" className='form-control' {...register('routedetails')}/>
-            </div>
-
-            <div className='mb-2'>
               <label htmlFor="passportimage" className='form-label'>passport size photo</label>
               <input type="text"  className='form-control' {...register('passportimage', {required:true})}/>
               {errors.username?.type === 'required' && <p className='formSubmitErrors'>photo required</p>}
-            </div>
-
-            <div className='mb-2'>
-              <label htmlFor="aadhar" className='form-label'>Aadhar card</label>
-              <input type="text"  className='form-control' {...register('aadhar', {required:true})}/>
-              {errors.username?.type === 'required' && <p className='formSubmitErrors'>Aadhar required</p>}
-            </div>
-
-            <div className='mb-2'>
-              <label htmlFor="marklist" className='form-label'>Tenth marks list</label>
-              <input type="text" className='form-control' {...register('marklist', {required:true})}/>
-              {errors.username?.type === 'required' && <p className='formSubmitErrors'>link required</p>}
             </div>
 
             <button className="btn btn-success">Submit</button>
@@ -97,4 +80,4 @@ function BusPassApplication() {
   )
 }
 
-export default BusPassApplication
+export default Renewal

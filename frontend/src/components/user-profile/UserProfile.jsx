@@ -8,8 +8,8 @@ function UserProfile() {
   let {user, setUser} = useContext(UserLoginContext);
   return (
     <div>
-      <div  className='text-end fs-3 m-5'>
-        <p>username:  {user.username}</p>
+      <div  className='text-end fs-5 m-5'>
+        <p>Username:  {user.username}</p>
         <p>Mobile: {user.mobile}</p>
       </div>
         <ul className='nav justify-content-center fs-4'>

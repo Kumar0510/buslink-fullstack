@@ -4,8 +4,19 @@
     width: 300px;;
     background-color: rgb(35, 41, 41);
 }
-
-img{
-    width: 100px;
+.profile{
+    width: 150px;
+}
+.heading img{
+    width: 80px;
     border-radius: 50%;
+}
+.heading{
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgb(102, 109, 116);
+}
+.heading .card-title{
+    margin-top: 15px;
+    margin: auto;
 }
