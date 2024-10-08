@@ -21,22 +21,20 @@ passApp.post('/pass/:username', expressAsyncHandler(async (req, res) =>{
     const passCollec = req.app.get("passCollec");
     let userName = req.params.username;
     let newUser = req.body;
-
     let findres = await passCollec.findOne({username : userName})
-
     if(findres){
         res.send({message: "User pass already exists"});
     }
     else{
         let dur = newUser.duration+'d';
         console.log(dur);
+        //let signedToken = jwt.sign({username:userName}, process.env.SECRET_KEY, {expiresIn: dur})
         let signedToken = jwt.sign({username:userName}, process.env.SECRET_KEY, {expiresIn: dur})
         newUser.token = signedToken;
         newUser.username = userName;
         await passCollec.insertOne(newUser);
         res.send({message: "User pass created"});
     }
-    
 }))
 
 passApp.delete('/pass/:username', expressAsyncHandler(async (req, res) =>{
@@ -48,6 +46,22 @@ passApp.delete('/pass/:username', expressAsyncHandler(async (req, res) =>{
     if(findres){
         passCollec.deleteOne({username:userName})
         res.send({message: "user pass is deleted"})
+    }
+    else{
+        res.send({message: "user is not found"})
+    }
+}))
+
+passApp.put('/pass/:username', expressAsyncHandler(async (req, res) =>{
+    const passCollec = req.app.get("passCollec");
+    let userName = req.params.username;
+
+    let findres = await passCollec.findOne({username : userName})
+    let dummytoken = "12548"
+    if(findres){
+        //passCollec.deleteOne({username:userName})
+        passCollec.updateOne({username: userName}, { $set: { token: dummytoken } })
+        res.send({message: "user pass is updated the token", payload: findres})
     }
     else{
         res.send({message: "user is not found"})
@@ -82,6 +96,31 @@ passApp.get('/passcheck/:username', expressAsyncHandler(async (req, res)=>{
             res.send({message: "Token expired"});
         }
     }    
+}))
+
+//pass renewal
+passApp.put('/passrenewal/:username', expressAsyncHandler(async (req, res) =>{ 
+    const passCollec = req.app.get("passCollec");
+    let userName = req.params.username;
+    let newUser = req.body;
+
+    let findres = await passCollec.findOne({username : userName})
+
+    if(findres){
+        if(findres.token === "12548"){
+            let dur = newUser.duration+'d';
+            console.log(dur);
+            //let signedToken = jwt.sign({username:userName}, process.env.SECRET_KEY, {expiresIn: dur})
+            let signedToken = jwt.sign({username:userName}, process.env.SECRET_KEY, {expiresIn: dur})
+            passCollec.updateOne({username: userName}, { $set: { token: signedToken } })
+            passCollec.updateOne({username: userName}, { $set: { duration: newUser.duration}})
+            res.send({message: "renewal success"});
+        }else res.send({message: "No renewal needed, pass is already in the duration"});
+    }
+    else{
+        res.send({message: "User pass doesnot exist to renewal"});
+    }
+    
 }))
 
 module.exports = passApp;

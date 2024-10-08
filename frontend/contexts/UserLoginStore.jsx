@@ -39,6 +39,7 @@ function UserLoginStore({children}) {
       setUserLoginStatus(false)
       setUser({})
       sessionStorage.removeItem('token')
+      localStorage.removeItem("username")
   }
 
   return (

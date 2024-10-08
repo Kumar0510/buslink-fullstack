@@ -30,8 +30,8 @@
     margin-top: 30px;
   }
   
-  .feature-card1, .feature-card2 {
-    width: 250px;
+  .feature-card1 {
+    width: 500px;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;

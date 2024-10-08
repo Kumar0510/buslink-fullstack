@@ -12,38 +12,52 @@ function Mypass() {
         if(response.message === 'Token expired'){
             let res = await fetch(`http://localhost:4001/pass-api/pass/${user.username}`,
                 {
-                    method :"delete",
+                    method :"put",
                     headers : {"Content-type" : "application/json"}
                 }
             )
             res = await res.json();
-            console.log('deleted');
+            console.log('updated');
+            console.log(res);
         }
         console.log("in handle lcik");
         console.log(response.message);
-        
         setBusPassRegister(response.payload)
+
+        localStorage.setItem("username", response.payload.username)
     }
     return (
         <div className='mx-auto'>
-            {busPassRegister? (
-            <div className="card " >
-                <div className="card-body p-5">
-                    <div className='heading text-center'>
-                        <img src="/src/assets/logo.png" alt="" />
-                        <h5 className="card-title">Buspass</h5>
-                    </div>
-                    
-                    <img src={busPassRegister.passportimage} className='m-6 profile' alt="" />
-                    <p className="card-title">Name: {busPassRegister.fullname}</p>
-                    <p className="card-title">Passtype: {busPassRegister.passtype}</p>
-                    <p className="card-title">Duration: {busPassRegister.duration} days</p>
-                    <p></p>
+            {localStorage.getItem("username")? (
+            <div className="card" >
+                <div className='heading text-center'>
+                <img src="/src/assets/logo.png" alt="" />
+                <h5 className="card-title">Buspass</h5>
                 </div>
+
+                <ul className="list-group list-group-flush">
+                    <li className="list-group-item text-center">
+                        <img src={busPassRegister.passportimage} className='m-6 profile' alt="" />
+                    </li>
+                    <li className="list-group-item">
+                        <p className="card-title">Name: {busPassRegister.fullname}</p>
+                    </li>
+                    <li className="list-group-item">
+                        <p className="card-title">Passtype: {busPassRegister.passtype}</p>
+                        
+                    </li>
+                    <li className="list-group-item">
+                        <p className="card-title">Duration: {busPassRegister.duration} days</p>
+                    </li>
+                </ul>
             </div>
+            
             ) :  
             (
-            < div className=" m-10 text-center text-danger"> No bus pass available please register for the bus pass</div>  
+            < div className=" m-10 text-center text-danger"> 
+                <p>No bus pass available please register for the bus pass</p>
+                <p>please click on check to update this page</p>
+            </div>  
             )}
             <div className='text-center'>
                 <button className='btn btn-success text' onClick={handleClick}>check</button>

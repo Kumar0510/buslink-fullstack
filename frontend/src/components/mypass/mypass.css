@@ -1,11 +1,11 @@
 .card{
     margin :auto;
     margin-top: 20px;
-    width: 300px;;
+    width:350px;
     background-color: rgb(35, 41, 41);
 }
 .profile{
-    width: 150px;
+    width: 200px;
 }
 .heading img{
     width: 80px;
@@ -14,7 +14,6 @@
 .heading{
     display: flex;
     flex-wrap: wrap;
-    background-color: rgb(102, 109, 116);
 }
 .heading .card-title{
     margin-top: 15px;

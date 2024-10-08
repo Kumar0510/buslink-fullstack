@@ -8,13 +8,13 @@ import './renewal.css'
 
 function Renewal() {
     let {busPassRegister, setBusPassRegister, user} = useContext(UserLoginContext);
-
+    let status = "";
     async function handleFormSubmit(data){
         setBusPassRegister({...data})
 
-        let res = await fetch(`http://localhost:4001/pass-api/pass/${user.username}`,
+        let res = await fetch(`http://localhost:4001/pass-api/passrenewal/${user.username}`,
           {
-          method :"post",
+          method :"put",
           headers : {"Content-type" : "application/json"},
           body : JSON.stringify(data)
           }
@@ -24,6 +24,8 @@ function Renewal() {
         console.log("handle submit buspass register");
         console.log(response);
         registrationStatus = true;
+        status = response.message;
+        console.log(status);
         setSubErr("Form submitted")
     }
 
@@ -37,6 +39,8 @@ function Renewal() {
         <p className='text-center display-6' >Bus Pass Renewal</p>
         <p className='text-center text-danger'>{err}</p>
         <p className='text-center text-success'>{suberror}</p>
+
+        
         <div className='row'>
   
         <div className=' p-5 col-lg-5  col-mb-5 col-sm-5 mx-auto form-group'>
@@ -63,12 +67,6 @@ function Renewal() {
                     <option value="90">90 days</option>
               </select>
               {errors.username?.type === 'required' && <p className='formSubmitErrors'>passtype required</p>}
-            </div>
-
-            <div className='mb-2'>
-              <label htmlFor="passportimage" className='form-label'>passport size photo</label>
-              <input type="text"  className='form-control' {...register('passportimage', {required:true})}/>
-              {errors.username?.type === 'required' && <p className='formSubmitErrors'>photo required</p>}
             </div>
 
             <button className="btn btn-success">Submit</button>
