@@ -1,75 +1,60 @@
+/* General Styles */
 .home-container {
-    text-align: center;
-  }
+  text-align: center;
+  padding: 20px;
+  background-color: #f0f8ff; /* Optional: Light background color */
+  min-height: 100vh; /* Full view height */
   
-  .banner {
-    background-image: url('../../assets/banner.png'); /* Add your banner image URL */
-    background-size: cover;
-    background-position: center;
-    color: rgb(0, 0, 0);
-    text-align: center;
-    border-radius: 10px;
-    height: 50vh;
-    margin-top: 100px;
-    margin-bottom: 50px;
-  }
-  
-  .banner h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-  }
-  
-  .banner p {
-    font-size: 1.5rem;
-    margin-bottom: 40px;
-  }
-  .features-section {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 30px;
-    margin-top: 30px;
-  }
-  
-  .feature-card1 {
-    width: 500px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .feature-card1{
-    margin-left: 100px;
-  }
-  .feature-card2{
-    margin-right: 100px;
-  }
+}
 
-  .icon {
-    width: 50px;
-    margin-bottom: 10px;
-  }
-  
-  .btn {
-    margin-top: 10px;
-    padding: 10px 15px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .timings-section {
-    margin-top: 30px;
-  }
-  
-  .timings-section input {
-    padding: 10px;
-    width: 200px;
-    margin-right: 10px;
-  }
-  
-  .bus-timings p {
-    margin-top: 10px;
-  }
-  
+.banner {
+  background-image: url('../../assets/banner3.png'); /* Path to the image */
+  background-size: contain; /* Scale the image to fit within the container */
+  background-repeat: no-repeat; /* Prevent repeating the image */
+  background-position: center; /* Center the image in the container */
+  height: 600px; /* Adjust height as needed */
+  position: relative;
+  display: flex;
+  align-items: flex-start; /* Align items at the top */
+}
+.banner-text {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgb(12, 11, 11); /* Ensures text stands out */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional text shadow for readability */
+}
+
+.banner-text h1 {
+  font-size: 36px;
+  margin: 0;
+}
+
+.banner-text p {
+  font-size: 18px;
+  margin: 10px 0 0 0;
+}
+
+/* Other Styles for Features Section */
+.features-section {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.feature-card {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  margin: 15px;
+  width: 45%;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+}
