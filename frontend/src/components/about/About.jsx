@@ -2,7 +2,7 @@ import React from 'react'
 import './About.css'
 function About() {
   return (
-    <>
+    <div className = "root">
     
     <div className='text-center m-10 card mx-auto'>
       <div className="card-body">
@@ -31,7 +31,7 @@ function About() {
     </div>
     </div>
     */}
-    </>
+    </div>
   )
 }
 
