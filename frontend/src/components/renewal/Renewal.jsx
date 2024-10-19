@@ -50,7 +50,11 @@ function Renewal() {
               <input type="text" className='form-control' {...register('fullname', {required:true})}/>
               {errors.username?.type === 'required' && <p className='formSubmitErrors'>fullname required</p>}
             </div>
-
+            <div className='mb-2'>
+              <label htmlFor="fullname" className='form-label'>Username</label>
+              <input type="text" className='form-control' {...register('username', {required:true})}/>
+              {errors.username?.type === 'required' && <p className='formSubmitErrors'>username required</p>}
+            </div>
             <div className='mb-2'>
               <label htmlFor="passtype" className='form-label'>Type of pass</label>
               <select className='bg-light m-2' {...register("passtype")}>
