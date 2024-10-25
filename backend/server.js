@@ -3,12 +3,14 @@ const express = require('express')
 const app = express();
 //import mongoclient
 const {MongoClient}= require('mongodb');
-const cors = require('cors')
+//const cors = require('cors')
 
 app.use(express.json())
+/*
 app.use(cors({
     origin: "https://buslink-fullstack-xcwm.vercel.app"
 }))
+    */
 require('dotenv').config()
 
 //connecting to Mongo db server
