@@ -11,7 +11,7 @@ function UserLoginStore({children}) {
     let [passStatus, setPassStatus] = useState(true)
 
     async function loginUser(userData){
-      let res = await fetch(`http://localhost:4001/user-api/login`,
+      let res = await fetch(`https://buslink-fullstack.onrender.com/user-api/login`,
           {
           method :"post",
           headers : {"Content-type" : "application/json"},
