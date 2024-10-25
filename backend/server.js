@@ -12,7 +12,7 @@ app.use(cors({
 }))
     */
 
-app.use(cors)
+app.use(cors())
 require('dotenv').config()
 
 //connecting to Mongo db server
