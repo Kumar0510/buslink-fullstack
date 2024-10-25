@@ -12,7 +12,7 @@ function BusPassApplication() {
     async function handleFormSubmit(data){
         setBusPassRegister({...data})
 
-        let res = await fetch(`http://localhost:4001/pass-api/pass/${user.username}`,
+        let res = await fetch(`https://buslink-fullstack.onrender.com/pass-api/pass/${user.username}`,
           {
           method :"post",
           headers : {"Content-type" : "application/json"},

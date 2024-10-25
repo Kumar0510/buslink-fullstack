@@ -12,7 +12,7 @@ function Renewal() {
     async function handleFormSubmit(data){
         setBusPassRegister({...data})
 
-        let res = await fetch(`http://localhost:4001/pass-api/passrenewal/${user.username}`,
+        let res = await fetch(`https://buslink-fullstack.onrender.com//pass-api/passrenewal/${user.username}`,
           {
           method :"put",
           headers : {"Content-type" : "application/json"},

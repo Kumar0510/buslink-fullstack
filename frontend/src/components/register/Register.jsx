@@ -13,13 +13,14 @@ function Register() {
 
     async function handleFormSubmit(data){
 
-      let ex = await fetch("http://localhost:4001/user-api/users");
+      //let ex = await fetch("http://localhost:4001/user-api/users");
+      let ex = await fetch("https://buslink-fullstack.onrender.com//user-api/users");
       let resex = await ex.json();
 
       console.log("data from the api");
       console.log(resex);
       try{
-        let res = await fetch("http://localhost:4001/user-api/users", {
+        let res = await fetch("https://buslink-fullstack.onrender.com/user-api/users", {
           method: "POST",
           headers: { "Content-type": "application/json" },
           body:JSON.stringify(data)

@@ -6,11 +6,11 @@ import "./mypass.css"
 function Mypass() {
     let {user, busPassRegister, busPassRegisterStatus, setBusPassRegister} = useContext(UserLoginContext);
     async function handleClick(){
-        let res = await fetch(`http://localhost:4001/pass-api/passcheck/${user.username}`)
+        let res = await fetch(`https://buslink-fullstack.onrender.com/pass-api/passcheck/${user.username}`)
         let response = await res.json();
 
         if(response.message === 'Token expired'){
-            let res = await fetch(`http://localhost:4001/pass-api/pass/${user.username}`,
+            let res = await fetch(`https://buslink-fullstack.onrender.com/pass-api/pass/${user.username}`,
                 {
                     method :"put",
                     headers : {"Content-type" : "application/json"}
