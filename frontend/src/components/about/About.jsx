@@ -6,12 +6,7 @@ function About() {
     
     <div className='text-center m-10 card mx-auto'>
       <div className="card-body">
-        <p>Website created by</p>
-        <p>A. Naga Pavan Kumar</p>
-        <p>Lalith</p>
-        <p>Abdul Azeez</p>
-        <p>Abdul Jabbar</p>
-        <p>Contact 7013424402 for any Queries</p>
+        Welcome to BusLink – your one-stop platform for convenient and hassle-free bus pass management. We provide students with seamless options for bus pass registration and easy renewals for 30 or 90 days. Our mission is to make daily commutes simpler, saving you time and ensuring reliable access to transit passes. With BPA, managing your travel is now just a few clicks away. Join us in making your journey smarter, faster, and more accessible!
       </div>
     </div>
 
