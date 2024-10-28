@@ -10,7 +10,7 @@ function Header() {
     <div>
       <div className='d-flex flex-wrap justify-content-around p-1 main'>
         <div className="productHeader">
-          <img src="../src/assets/banner3.png" alt="" className = "logoheader"/>
+          <img src="../src/assets/logo.png" alt="" className = "logoheader"/>
           <h3 className='companyname text-white'>BusLink</h3>
         </div>
         <ul className='nav justify-content-end fs-4 navMain'>
